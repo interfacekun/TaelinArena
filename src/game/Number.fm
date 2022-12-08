@@ -1,0 +1,86 @@
+import Bool
+import Nat
+import Bits
+//import String
+
+number_equal(a : Number, b : Number) : Bool
+  if a === b then
+    true
+  else
+    false
+
+digit_to_char(n: Number) : Number
+  if n < 10 then
+    n + '0'
+  else
+    (n - 10) + 'a'
+
+number_to_bits(len: Number, n: Number) : Bits
+  if len === 0 then
+    be
+  else
+    if n && 1 then
+      b1(number_to_bits(len - 1, n >>> 1))
+    else
+      b0(number_to_bits(len - 1, n >>> 1))
+
+nat_to_number(n: Nat) : Number
+  case n
+  | zero => 0
+  | succ => 1 + nat_to_number(n.pred)
+
+pi : Number
+  3.141592653589793
+
+tau 
+  6.283185307179586
+
+abs(x : Number) : Number
+  if x < 0 then
+    x * -1
+  else
+    x
+    
+floor(x : Number) : Number
+  (x - (x % 1)) - (if x < 0 then 1 else 0)
+
+min(a: Number, b: Number) : Number
+  if a < b then
+    a
+  else
+    b
+
+max(a: Number, b: Number) : Number
+  if a > b then
+    a
+  else
+    b
+
+// Is a <= b?
+gte(a: Number, b: Number) : Number
+  (a > b) || (a === b)
+
+// Is a >= b?
+lte(a: Number, b: Number) : Number
+  (a < b) || (a === b)
+
+// Is x inside the a..b range, with `b` exclusive?
+is_between(a: Number, b: Number, x: Number) : Number
+  (a === x) || ((a < x) && (x < b))
+
+// Is x inside the a..b range, inclusive?
+is_within(a: Number, b: Number, x: Number) : Number
+  (a === x) || (a === b) || ((a < x) && (x < b))
+
+// 32-bit Insigned Integer
+Uint32 : Type
+  Number
+
+// Murmurhash 32-bit finalizer
+bitmix(h: Uint32) : Uint32
+  let h = h ^ (h >>> 16)
+  let h = h * 0x85ebca6b
+  let h = h >>> 13
+  let h = h * 0xc2b2ae35
+  let h = h ^ (h >>> 16)
+  h

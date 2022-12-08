@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build_models": "node src/models/script.js; webpack --config models.webpack.config.js",
-    "build": "webpack",
+    "build_models": "node src/models/script.js;./node_modules/.bin/webpack --config models.webpack.config.js",
+    "build": "./node_modules/.bin/webpack",
     "upload": "rsync -rvhz docs TA:~/TA",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build_models_low_mem": "node --max-old-space-size=512 `which npm` run build_models"

@@ -38,6 +38,7 @@ module.exports = function Controls(on_input) {
     for (var key in self.keyboard) {
       self.keyboard[key][0] = 0;
     }
+    // console.log("key", key);
     return code;
   };
 
@@ -102,6 +103,7 @@ module.exports = function Controls(on_input) {
   document.body.onkeyup = (e) => {
     if (document.activeElement.type !== "text") {
       var name = key_name[e.key.toLowerCase()];
+      // console.log("onkeyup", e.key.toLowerCase(), name);
       if (name) {
         self.keyboard[name] = [1,0];
         emit_inputs();
@@ -112,6 +114,7 @@ module.exports = function Controls(on_input) {
   document.body.onkeydown = (e) => {
     if (document.activeElement.type !== "text") {
       var name = key_name[e.key.toLowerCase()];
+      // console.log("onkeydown", e.key.toLowerCase(), name);
       if (e.key === "Enter") {
         var chat_input = document.getElementById("chat_input");
         if (chat_input) {
